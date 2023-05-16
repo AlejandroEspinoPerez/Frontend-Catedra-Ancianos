@@ -16,6 +16,7 @@ export class DialogBecadoComponent {
 
     becadoForm !:FormGroup;
     actionButton:string="SAVE";
+    texto:string="";
 
   constructor(private formBuilder:FormBuilder,
   private api:ApiService,private toast:ToastrService,
@@ -23,7 +24,15 @@ export class DialogBecadoComponent {
   private dialogRef:MatDialogRef<DialogBecadoComponent> ) {
   }
 
-
+    tamano=11;
+    tamanoValido=false;
+    validdarTamano(){
+      if (this.texto.length===this.tamano) {
+          this.tamanoValido=false;
+      } else {
+          this.tamanoValido=true;
+      }
+    }
 
   ngOnInit(): void {
     this.becadoForm=this.formBuilder.group({

@@ -1,29 +1,19 @@
-
-
 <mat-card class="card">
   <mat-card-header>
     <h1>Login de Usuario</h1>
   </mat-card-header>
 
   <mat-card-content class="card_content">
-    <form
-      class="example-form" [formGroup]="loginform"
-      (ngSubmit)="prosederLogin()"
-    >
+    <form class="example-form" [formGroup]="loginform" (ngSubmit)="prosederLogin()">
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Nombre de Usario</mat-label>
-        <input matInput formControlName="username" placeholder="Usuario.." />
+        <input matInput formControlName="username" />
         <mat-icon matSuffix>account_circle</mat-icon>
       </mat-form-field>
 
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Contraseña</mat-label>
-        <input
-          type="password"
-          matInput
-          formControlName="password"
-          placeholder="Contraseña.."
-        />
+        <input type="password" matInput formControlName="password" />
         <mat-icon matSuffix>password</mat-icon>
       </mat-form-field>
 
@@ -34,5 +24,3 @@
     </form>
   </mat-card-content>
 </mat-card>
-
-

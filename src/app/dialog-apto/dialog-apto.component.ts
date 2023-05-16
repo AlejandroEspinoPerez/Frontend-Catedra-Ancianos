@@ -20,8 +20,7 @@ export class DialogAptoComponent {
   @Inject(MAT_DIALOG_DATA)public editData:any,
   private dialogRef:MatDialogRef<DialogAptoComponent> ) {
   }
-
-
+ 
 
   ngOnInit(): void {
     this.aptoForm=this.formBuilder.group({
