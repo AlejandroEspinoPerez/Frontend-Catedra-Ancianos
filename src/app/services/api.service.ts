@@ -10,6 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
   apiurlBase='https://residencia.onrender.com/';
   apiurluser='https://residencia.onrender.com/userList/';
+  apiurlrole='https://residencia.onrender.com/role/';
   apiurlresidencia='https://residencia.onrender.com/residenciaList/';
   apiurlapto='https://residencia.onrender.com/apartamentoList/';
   apiurlbecado='https://residencia.onrender.com/becadoList/';
@@ -44,7 +45,7 @@ export class ApiService {
     return this.http.get(this.apiurluser);
   }
   getAllRole(){
-    return this.http.get(this.apiurluser+'role');
+    return this.http.get(this.apiurlrole);
   }
   getbycode(code:any){
     return this.http.get(this.apiurluser+code);
