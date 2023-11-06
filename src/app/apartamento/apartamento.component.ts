@@ -23,6 +23,7 @@ export class ApartamentoComponent {
     haveadd=false;
     havedelete=false;
     accesData:any;
+    mostrarDelete=false;
 
     displayedColumns: string[] = ['numeroApto', 'cantBecados', 'nombreJefe','capacidadApto','disponibilidadApto','evaluacionApto', 'Acciones'];
   dataSource!: MatTableDataSource<any>;
@@ -33,6 +34,9 @@ export class ApartamentoComponent {
 
   constructor(private dialog: MatDialog,private router:Router ,private toast:ToastrService, private api: ApiService){
       this.setAccesPermission();
+      if (this.api.getUserrole() == 'admin') {
+        this.mostrarDelete = true;
+      }
   }
 
 

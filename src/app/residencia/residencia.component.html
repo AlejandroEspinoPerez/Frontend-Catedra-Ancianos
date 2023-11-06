@@ -7,7 +7,7 @@
     <mat-icon class="example-icon">verified_user</mat-icon>
     <span>Residencia</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openDialogResidencia()"  >Add Residencia</button>
+    <button *ngIf="mostrarAdicionar"  mat-raised-button color="warn" (click)="openDialogResidencia()"  >Add Residencia</button>
   </mat-toolbar-row>
 
 </mat-toolbar>
@@ -18,7 +18,7 @@
   <div  style="margin-top: 10px;">
     <mat-form-field appearance="outline">
     <mat-label>Buscar</mat-label>
-    <input matInput (keyup)="applyFilter($event)" matInput placeholder="Buscando..." #input>
+    <input matInput (keyup)="applyFilter($event)" matInput  #input>
     <mat-icon matSuffix>filter_alt</mat-icon>
   </mat-form-field>
 
@@ -51,13 +51,13 @@
 
 
       <!-- Acciones Column -->
-      <ng-container matColumnDef="Acciones">
+      <ng-container matColumnDef="Acciones" class="pepe" >
       <th  class="title-table title-accion" mat-header-cell *matHeaderCellDef mat-sort-header> Acciones</th>
       <td  class=" columaccion"  mat-cell *matCellDef="let row">
         <button (click)="editResidencia(row)" mat-icon-button color="primary">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteResidencia(row.id)" color="warn">
+        <button mat-icon-button *ngIf="mostarDelete" (click)="deleteResidencia(row.id)" color="warn">
           <mat-icon>delete</mat-icon>
         </button>
         <button mat-icon-button color="accent" (click)="openDialogApartamento()"  >  <mat-icon>add</mat-icon></button>
@@ -75,8 +75,12 @@
 
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
 </div>
-  </div>
 </div>
+</div>
+
+
+
+
 
 
 

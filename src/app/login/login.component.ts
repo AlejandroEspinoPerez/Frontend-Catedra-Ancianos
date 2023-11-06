@@ -25,13 +25,8 @@ export class LoginComponent {
   prosederLogin(){
     console.log('loguin function')
     if(this.loginform.valid){
-    //     this.service.prosederRegister(this.loginform.value).subscribe(res=>{
-    //       this.toast.success('Por favor contacta con el admin para activar su acceso','Registrado correctamente');
-    //       this.router.navigate(['login']);
-    //     });
-    // }else{
-    //     this.toast.warning('Por favor introduzca datos correctos')
-    // }
+
+      
     this.service.getbycode(this.loginform.value.username).subscribe(res=>{
         this.userdata=res;
         console.log(this.userdata);

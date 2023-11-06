@@ -5,7 +5,7 @@
     <mat-icon class="example-icon">verified_user</mat-icon>
     <span>Becados</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="warn" (click)="openDialog()"  >Add Becado</button>
+    <button *ngIf="mostrarAdicionar" mat-raised-button color="warn" (click)="openDialog()"  >Add Becado</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -56,7 +56,7 @@
         <button (click)="editBecado(row)" mat-icon-button color="primary">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteBecado(row.id)" color="warn">
+        <button mat-icon-button *ngIf="mostrarDelete" (click)="deleteBecado(row.id)" color="warn">
           <mat-icon>delete</mat-icon>
         </button>
       </td>

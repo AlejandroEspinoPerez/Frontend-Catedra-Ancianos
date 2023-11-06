@@ -69,7 +69,7 @@
         <button (click)="editApto(row)" mat-icon-button color="primary">
           <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button (click)="deleteApto(row.id)" color="warn">
+        <button mat-icon-button *ngIf="mostrarDelete" (click)="deleteApto(row.id)" color="warn">
           <mat-icon>delete</mat-icon>
         </button>
         <button mat-icon-button color="accent" (click)="openDialogBecado()"  >  <mat-icon>add</mat-icon></button>

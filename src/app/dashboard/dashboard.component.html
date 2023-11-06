@@ -5,12 +5,11 @@
 
   <div class="container ">
   <h1 class="h1centrado">Dashboard</h1>
-
   <div *ngIf="logueado" class="card">
     <div class="card-head" style="color: black;">Autenticacion Necesaria</div>
     <div class="card-body">
       <p style="color: black;">
-        AUTENTIQUESE EN EL SISTEMA PARA MAS INFORMACION Y GESTION DE LA RESIDENCIA UNIVERSITAR
+        AUTENTIQUESE EN EL SISTEMA PARA MAS INFORMACION Y GESTION DE LA RESIDENCIA UNIVERSITARIA
       </p>
 
     </div>
@@ -18,7 +17,7 @@
 </div>
 
 
-<div *ngIf="!logueado" class="col-md-10 container contenedorCard">
+<div *ngIf="!logueado" class="col-md-12 container contenedorCard">
     <div class="row ">
         <div class="col-xl-3 col-lg-6">
             <div  routerLink="/residencia" class="card l-bg-cherry">

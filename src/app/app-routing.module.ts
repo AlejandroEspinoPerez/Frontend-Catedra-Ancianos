@@ -17,15 +17,15 @@ import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'residencia', component: ResidenciaComponent, canActivate: [AuthGuard] },
-  { path: 'becado', component: BecadoComponent, canActivate: [AuthGuard] },
-  { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'apartamento', component: ApartamentoComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'userlisting', component: UserlistingComponent, canActivate: [AuthGuard] },
-  { path: '404', component: PageNotFoundComponent },
+  { path: 'dashboard',title:'Dashboard', component: DashboardComponent },
+  { path: 'residencia',title:'Residencia', component: ResidenciaComponent, canActivate: [AuthGuard] },
+  { path: 'becado',title:'Becados', component: BecadoComponent, canActivate: [AuthGuard] },
+  { path: 'settings',title:'Dashboard', component: SettingsComponent, canActivate: [AuthGuard] },
+  { path: 'apartamento',title:'Apartamentos', component: ApartamentoComponent, canActivate: [AuthGuard] },
+  { path: 'login',title:'Login', component: LoginComponent },
+  { path: 'register',title:'Registro', component: RegisterComponent },
+  { path: 'userlisting',title:'Usuarios', component: UserlistingComponent, canActivate: [AuthGuard] },
+  { path: '404',title:'Error', component: PageNotFoundComponent },
     { path: '**', component: PageNotFoundComponent },
 
 ];

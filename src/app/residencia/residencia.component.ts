@@ -10,6 +10,7 @@ import Swal from 'sweetalert2'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { DialogAptoComponent } from '../dialog-apto/dialog-apto.component';
+
 @Component({
   selector: 'app-residencia',
   templateUrl: './residencia.component.html',
@@ -21,6 +22,8 @@ export class ResidenciaComponent{
     haveadd=false;
     havedelete=false;
     accesData:any;
+    mostrarAdicionar=false;
+    mostarDelete=false;
 
   displayedColumns: string[] = ['numeroFacultad','numeroEdificio', 'cantApto', 'nombreJefe', 'Acciones'];
   dataSource!: MatTableDataSource<any>;
@@ -30,6 +33,13 @@ export class ResidenciaComponent{
 
   constructor(private dialog: MatDialog,private router:Router ,private toast:ToastrService, private api: ApiService) {
     this.setAccesPermission();
+    if (this.api.getUserrole() == 'admin' ||this.api.getUserrole() == 'trabajador') {
+      this.mostrarAdicionar = true;
+    }
+    if (this.api.getUserrole() == 'admin') {
+      this.mostarDelete = true;
+    }
+    this.getAllResidencias();
   }
 
 

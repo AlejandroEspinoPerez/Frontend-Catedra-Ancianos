@@ -22,7 +22,8 @@ export class BecadoComponent {
     haveadd=false;
     havedelete=false;
     accesData:any;
-
+    mostrarAdicionar=false;
+    mostrarDelete=false;
     displayedColumns: string[] = ['nombreBecado', 'numeroCI', 'ano','evaluacion', 'Acciones'];
   dataSource!: MatTableDataSource<any>;
 
@@ -32,6 +33,12 @@ export class BecadoComponent {
 
   constructor(private dialog: MatDialog,private router:Router ,private toast:ToastrService, private api: ApiService){
       this.setAccesPermission();
+      if (this.api.getUserrole() == 'admin' ||this.api.getUserrole() == 'trabajador') {
+        this.mostrarAdicionar = true;
+      }
+      if (this.api.getUserrole() == 'admin') {
+        this.mostrarDelete = true;
+      }
   }
 
 
