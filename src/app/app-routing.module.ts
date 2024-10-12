@@ -13,12 +13,18 @@ import { RegisterComponent } from "./register/register.component";
 
 import { UserlistingComponent } from "./userlisting/userlisting.component";
 import { AuthGuard } from './guard/auth.guard';
+import { AncianoComponent } from './anciano/anciano.component';
+import { ContactosComponent } from './contactos/contactos.component';
+import { EnfermedadesComponent } from './enfermedades/enfermedades.component';
 
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'dashboard',title:'Dashboard', component: DashboardComponent },
-  { path: 'residencia',title:'Residencia', component: ResidenciaComponent, canActivate: [AuthGuard] },
+  { path: 'residencia', title: 'Residencia', component: ResidenciaComponent, canActivate: [AuthGuard] },
+  { path: 'anciano', title: 'Anciano', component: AncianoComponent, canActivate: [AuthGuard] },
+  { path: 'contactos', title: 'Contactos', component: ContactosComponent, canActivate: [AuthGuard] },
+  { path: 'enfermedades', title: 'Enfermedades', component: EnfermedadesComponent, canActivate: [AuthGuard] },
   { path: 'becado',title:'Becados', component: BecadoComponent, canActivate: [AuthGuard] },
   { path: 'settings',title:'Dashboard', component: SettingsComponent, canActivate: [AuthGuard] },
   { path: 'apartamento',title:'Apartamentos', component: ApartamentoComponent, canActivate: [AuthGuard] },

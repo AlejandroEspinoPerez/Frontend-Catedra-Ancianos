@@ -28,7 +28,32 @@
       </a>
     </li>
 
-    <!--Icono del Residencia -->
+    <!--Icono del Anciano -->
+    <li class="sidenav-nav-item">
+      <a class="sidenav-nav-link" routerLink="anciano" routerLinkActive="active"
+        [routerLinkActiveOptions]="{exact: true}">
+        <i class="sidenav-link-icon icon-sidenav fa fa-user-circle"></i>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Anciano</span>
+      </a>
+    </li>
+
+      <!--Icono del Contacto -->
+      <li class="sidenav-nav-item">
+        <a class="sidenav-nav-link" routerLink="contactos" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="sidenav-link-icon icon-sidenav fal fa-address-card"></i>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Contactos</span>
+        </a>
+      </li>
+
+      <!--Icono del Contacto -->
+      <li class="sidenav-nav-item">
+        <a class="sidenav-nav-link" routerLink="enfermedades" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <i class="sidenav-link-icon icon-sidenav fal fa fa-bed"></i>
+          <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Enfermedad</span>
+        </a>
+      </li>
+
+    <!-- Icono del Residencia
     <li class="sidenav-nav-item" >
       <a class="sidenav-nav-link" routerLink="residencia" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}">
@@ -36,6 +61,7 @@
         <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Residencia</span>
       </a>
     </li>
+
 
     <li class="sidenav-nav-item" >
       <a class="sidenav-nav-link" routerLink="apartamento" routerLinkActive="active"
@@ -52,7 +78,7 @@
         <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Becado</span>
       </a>
     </li>
-
+ -->
 
     <li class="sidenav-nav-item" *ngIf="isAdmin" >
       <a class="sidenav-nav-link" routerLink="userlisting" routerLinkActive="active"

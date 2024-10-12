@@ -1,0 +1,73 @@
+.dialog-content {
+  padding: 20px;
+  // background-color: #121212;
+  /* Dark background */
+  color: #e0e0e0;
+  /* Light text color for readability */
+}
+
+.dialog-title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  color: #bb86fc;
+  /* Light purple for titles */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.general-info {
+  flex: 1;
+  /* Take up available space */
+  margin-right: 20px;
+  /* Space between general info and disease box */
+}
+
+.info-list {
+  margin-bottom: 20px;
+}
+
+.info-list mat-list-item {
+  font-size: 1rem;
+  color: #e0e0e0;
+  /* Light text color */
+}
+
+.disease-box {
+  background-color: #280f6d;
+  /* Slightly lighter dark background for contrast */
+  border-radius: 8px;
+  padding: 15px;
+  /* Padding inside the disease box */
+  width: 250px;
+  /* Fixed width for the disease box */
+}
+
+.diseases-title {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #bb86fc;
+  /* Light purple for titles */
+}
+
+.disease-name {
+  font-weight: bold;
+}
+
+.diagnosis-date {
+  color: #b0bec5;
+  /* Lighter grey for secondary info */
+}
+
+.icon {
+  color: #03dac5;
+  /* Teal for healing icon */
+}
+
+.close-button {
+  background-color: #bb86fc;
+  /* Light purple for button */
+  color: white;
+}

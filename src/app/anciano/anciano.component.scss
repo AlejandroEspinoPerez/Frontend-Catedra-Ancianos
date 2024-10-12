@@ -1,0 +1,215 @@
+example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+.toolbar{
+  min-width: 100%;
+}
+
+table {
+  width: 90%;
+  padding: 20px;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+
+.container-table{
+  margin-top: 10px;
+
+  }
+.container
+{ width: 100%;
+  margin: 0 auto;
+  height: 100%;
+
+}
+
+
+.filter{
+  position: absolute;
+  display: flex;
+
+}
+
+.title-table{
+  font-weight: 900;
+
+}
+th{
+  background: #7c4dff;
+}
+.colum{
+  max-width: 20%;
+}
+
+.mar-column-nombre{
+  flex: 1 0 20%;
+
+}
+
+
+
+$bordercolor:rgba(0,0,0,0.12);
+$alternarColor:rgba(0,179,166,0.84);
+.mat-mdc-table .mdc-data-table__header-row  {
+  height: 30px;
+  background: #7c4dff;
+}
+.mat-mdc-table:nth-child(even){
+  max-height: 20px;
+  background-color: $alternarColor;
+}
+.mat-table{
+  font-family: 'Times New Roman', Times, serif;
+}
+.mat-cell{
+  font-size: 10px;
+  height: 20px;
+}
+.mat-cell:nth-child(even){
+  max-height: 20px;
+  background-color: $alternarColor;
+}
+
+.enfermedades-list {
+  list-style-type: disc;
+  /* Cambia el tipo de viñeta si es necesario */
+  padding-left: 20px;
+  /* Espaciado a la izquierda para la lista */
+  margin: 0;
+  /* Elimina el margen por defecto */
+}
+
+.enfermedades-list li {
+  margin-bottom: 5px;
+  /* Espaciado entre los elementos de la lista */
+  font-size: 14px;
+  /* Ajusta el tamaño de la fuente según tu preferencia */
+  color: #f6fafa;
+  /* Cambia el color según tu tema */
+}
+
+
+
+@media (max-width: 600px){
+  example-icon {
+    padding: 0 14px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  .toolbar{
+    min-width: 100%;
+  }
+
+  table {
+    width: 90%;
+    padding: 5px;
+    font-size: .5em;
+  }
+
+  .mat-mdc-form-field {
+    font-size: 4px;
+    width: 100%;
+  }
+
+
+
+  .container
+  { width: 100%;
+    margin: 0 auto;
+    height: 100%;
+
+  }
+
+
+  .filter{
+    position: absolute;
+    display: flex;
+
+  }
+
+  .title-table{
+    font-weight: 500;
+    max-width: 10px;
+    height: 50px;
+  }
+  th{
+    background: #7c4dff;
+    max-width: 30px;
+  }
+
+
+  .mar-column-nombre{
+    flex: 1 1 1%;
+
+  }
+.columaccion{
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+
+}
+.colum{
+  padding: 0px;
+  margin: 0;
+  max-width: 20%;
+}
+.title-accion{
+max-width: 5px;
+}
+
+.container-table{
+  margin: 0;
+
+  }
+
+
+.mat-mdc-cell .mdc-data-table__cell .cdk-cell .columaccion .cdk-column-Acciones {
+padding: 0px;
+align-items: center;
+background-color: aquamarine;
+}
+
+.mdc-data-table__cell, .mdc-data-table__header-cell{
+  padding: 0px;
+}
+.mdc-data-table__cell, .mdc-data-table__header-cell{
+  padding: 10px;
+}
+
+  .mat-mdc-table:nth-child(even){
+    max-height: 20px;
+    background-color: $alternarColor;
+  }
+  .mat-table{
+    font-family: 'Times New Roman', Times, serif;
+  }
+  .mat-cell{
+    font-size: 5px;
+    height: 20px;
+  }
+  .mat-cell:nth-child(even){
+    max-height: 20px;
+    background-color: $alternarColor;
+  }
+  .mat-cell, .mat-header-cell {
+    font-size: 4px;
+  }
+  .texto{
+    font-weight: 100;
+  }
+}
+
+
+
+

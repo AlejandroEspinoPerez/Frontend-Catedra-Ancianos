@@ -1,0 +1,45 @@
+<div class="container1">
+  <h1 mat-dialog-title>Adicionar Anciano</h1>
+
+  <div mat-dialog-content>
+    <form [formGroup]="ancianoForm">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput type="text" formControlName="nombre" placeholder="Escribe el nombre..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Apellidos</mat-label>
+        <input matInput type="text" formControlName="apellidos" placeholder="Escribe los apellidos..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Edad</mat-label>
+        <input matInput min="0" type="number" formControlName="edad" placeholder="Escribe la edad..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput type="text" formControlName="direccion" placeholder="Escribe la dirección..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genero">
+          <mat-option value="masculino">Masculino</mat-option>
+          <mat-option value="femenino">Femenino</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Número de Teléfono</mat-label>
+        <input matInput type="text" formControlName="numero_telefono" placeholder="Escribe el numero de teléfono...">
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>CLOSE</button>
+    <button mat-raised-button color="primary" (click)="addAnciano()">{{actionButton}}</button>
+  </div>
+</div>

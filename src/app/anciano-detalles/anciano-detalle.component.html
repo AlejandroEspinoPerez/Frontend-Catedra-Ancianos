@@ -1,0 +1,39 @@
+<mat-dialog-content class="dialog-content">
+  <h2 mat-dialog-title class="dialog-title">{{ data.nombre }} {{ data.apellidos }}</h2>
+
+  <mat-divider></mat-divider>
+
+  <div class="container">
+    <div class="general-info">
+      <mat-list class="info-list">
+        <mat-list-item>
+          <p><strong>Edad:</strong> {{ data.edad }}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p><strong>Dirección:</strong> {{ data.direccion }}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p><strong>Género:</strong> {{ data.genero }}</p>
+        </mat-list-item>
+          <mat-list-item>
+            <p><strong>Numero de teléfono:</strong> {{ data.numero_telefono }}</p>
+          </mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="disease-box" *ngIf="data.enfermedades.length > 0">
+      <h3 class="diseases-title">Enfermedades</h3>
+          <ul class="enfermedades-list">
+            <li *ngFor="let enfermedad of data.enfermedades">
+              {{ enfermedad.nombre_enfermedad }} (Diagnóstico: {{ enfermedad.fecha_diagnostico }})
+            </li>
+          </ul>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary" class="close-button">Cerrar</button>
+</mat-dialog-actions>

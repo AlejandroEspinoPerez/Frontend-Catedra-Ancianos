@@ -1,0 +1,41 @@
+<div class="container1">
+  <h1 mat-dialog-title>Adicionar Contacto</h1>
+
+  <div mat-dialog-content>
+    <form [formGroup]="contactoForm">
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Nombre del Contacto</mat-label>
+        <input matInput type="text" formControlName="nombre_familiar" placeholder="Escribe el nombre del contacto..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Relación</mat-label>
+        <input matInput type="text" formControlName="relacion" placeholder="Escribe la relación..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Número de Teléfono</mat-label>
+        <input matInput type="tel" formControlName="numero_telefono" placeholder="Escribe el número de teléfono..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Dirección</mat-label>
+        <input matInput type="text" formControlName="direccion" placeholder="Escribe la dirección..">
+      </mat-form-field>
+
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Género</mat-label>
+        <mat-select formControlName="genero">
+          <mat-option value="masculino">Masculino</mat-option>
+          <mat-option value="femenino">Femenino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+
+  <div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>CERRAR</button>
+    <button mat-raised-button color="primary" (click)="addContactos()">{{actionButton}}</button>
+  </div>
+</div>

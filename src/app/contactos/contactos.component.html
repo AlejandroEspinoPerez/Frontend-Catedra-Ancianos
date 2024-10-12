@@ -1,0 +1,85 @@
+<div class="contenedorGrande">
+
+  <mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row>
+      <mat-icon class="example-icon">verified_user</mat-icon>
+      <span>Contactos</span>
+      <span class="example-spacer"></span>
+      <!-- <button *ngIf="mostrarAdicionar" mat-raised-button color="warn" (click)="openDialog()">Add Contacto</button> -->
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscando..." #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table style="border-radius: 20px;" [dataSource]="dataSource" matSort>
+
+          <!-- Nombre Familiar Column -->
+          <ng-container matColumnDef="nombre_familiar">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Familiar</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.nombre_familiar}}</td>
+          </ng-container>
+
+          <!-- Relación Column -->
+          <ng-container matColumnDef="relacion">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Relación</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.relacion}}</td>
+          </ng-container>
+
+          <!-- Número de Teléfono Column -->
+          <ng-container matColumnDef="numero_telefono">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Número de Teléfono</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.numero_telefono}}</td>
+          </ng-container>
+
+        <!-- Dirección Column -->
+        <ng-container matColumnDef="direccion">
+          <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
+          <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.direccion}}</td>
+        </ng-container>
+
+        <!-- Género Column -->
+        <ng-container matColumnDef="genero">
+          <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Género</th>
+          <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.genero}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="anciano_nombre">
+          <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Anciano</th>
+          <td mat-cell class="colum" *matCellDef="let row">{{ row.anciano_nombre }}</td>
+        </ng-container>
+
+          <!-- Acciones Column -->
+          <ng-container matColumnDef="Acciones">
+            <th class="title-table" mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell class="columaccion" *matCellDef="let row">
+              <button (click)="editContacto(row)" mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="mostrarDelete" (click)="deleteContacto(row.id)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+      </div>
+    </div>
+  </div>
+
+</div>

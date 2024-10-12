@@ -8,7 +8,22 @@ export const navbarData = [
         routeLink: 'residencia',
         icon: 'fal fa-university',
         label: 'Residencia'
-    },
+  },
+  {
+    routeLink: 'anciano',
+    icon: 'fal fa-user-elder',
+    label: 'Ancianos'
+  },
+  {
+    routeLink: 'enfermedades',
+    icon: 'fal fa-virus',
+    label: 'Enfermedades'
+  },
+  {
+    routeLink: 'contactos',
+    icon: 'fal fa-address-book',
+    label: 'Contactos'
+  },
     {
       routeLink: 'apartamento',
       icon: 'fal fa-chart-bar ',

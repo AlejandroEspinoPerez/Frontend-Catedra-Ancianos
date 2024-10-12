@@ -1,0 +1,24 @@
+<mat-dialog-content class="dialog-content">
+  <h2 mat-dialog-title class="dialog-title">{{ data.nombre_familiar }}</h2>
+
+  <mat-divider></mat-divider>
+
+  <div class="container">
+    <div class="general-info">
+      <mat-list class="info-list">
+        <mat-list-item>
+          <p><strong>Número de Teléfono:</strong> {{ data.numero_telefono }}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p><strong>Relación:</strong> {{ data.relacion }}</p>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary" class="close-button">Cerrar</button>
+</mat-dialog-actions>

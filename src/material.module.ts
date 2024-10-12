@@ -12,8 +12,11 @@ import {   MatIconModule } from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core'; // Asegúrate de importar esto también
+import { MatDividerModule } from '@angular/material/divider';  // Importa este módulo
+import { MatListModule } from '@angular/material/list';        // Importa este módulo
 
 @NgModule({
   exports: [
@@ -32,7 +35,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatNativeDateModule, // Agrega este módulo
+    MatDividerModule,   // Añadir MatDividerModule
+    MatListModule,      // Añadir MatListModule
   ]
 })
 export class MaterialModule { }
