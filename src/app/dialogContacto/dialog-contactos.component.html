@@ -1,5 +1,6 @@
 <div class="container1">
-  <h1 mat-dialog-title>Adicionar Contacto</h1>
+  <h1 mat-dialog-title>{{ actionButton === 'SAVE' ? 'Adicionar Contacto' : 'Actualizar Contacto' }}</h1>
+
 
   <div mat-dialog-content>
     <form [formGroup]="contactoForm">

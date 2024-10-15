@@ -1,24 +1,38 @@
 <div class="container1">
-  <h1 mat-dialog-title>Adicionar Enfermedad</h1>
+  <h1 mat-dialog-title>{{ actionButton === 'SAVE' ? 'Adicionar Enfermedad' : 'Editar Enfermedad' }}</h1>
 
   <div mat-dialog-content>
     <form [formGroup]="enfermedadForm">
+      <!-- Campo: Nombre de la Enfermedad -->
       <mat-form-field class="input" appearance="outline">
         <mat-label>Nombre de la Enfermedad</mat-label>
         <input matInput type="text" formControlName="nombre_enfermedad"
           placeholder="Escribe el nombre de la enfermedad..">
       </mat-form-field>
 
+      <!-- Campo: Fecha de Diagnóstico -->
       <mat-form-field class="input" appearance="outline">
         <mat-label>Fecha de Diagnóstico</mat-label>
         <input matInput [matDatepicker]="picker" formControlName="fecha_diagnostico" placeholder="Elige la fecha..">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
+
+      <!-- Campo: Descripción -->
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput formControlName="descripcion" placeholder="Escribe una descripción.."></textarea>
+      </mat-form-field>
+
+      <!-- Campo: Medicamento -->
+      <mat-form-field class="input" appearance="outline">
+        <mat-label>Medicamento</mat-label>
+        <input matInput type="text" formControlName="medicamento" placeholder="Escribe el medicamento..">
+      </mat-form-field>
     </form>
   </div>
 
-  <div mat-dialog-actions [align]="'end'">
+  <div mat-dialog-actions align="end">
     <button mat-raised-button color="warn" mat-dialog-close>CLOSE</button>
     <button mat-raised-button color="primary" (click)="addEnfermedad()">{{actionButton}}</button>
   </div>

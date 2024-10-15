@@ -1,7 +1,7 @@
 <div class="sidenav" style="color:{{color}}" [ngClass]="collapsed ?'sidenav-collapsed':'' ">
   <div class="logo-container">
-    <button class="logo" (click)="toggleCollapse()">A</button>
-    <div class="logo-text" @fadeInOut *ngIf="collapsed">Angular</div>
+    <button class="logo" (click)="toggleCollapse()">C</button>
+    <div class="logo-text" @fadeInOut *ngIf="collapsed">Cátedra del Adulto Mayor</div>
     <button class="btn-close" *ngIf="collapsed" (click)="closeSidenav()">
       <i class="fal fa-times close-icon" @rotate></i>
     </button>
@@ -84,7 +84,7 @@
       <a class="sidenav-nav-link" routerLink="userlisting" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}">
         <i class="sidenav-link-icon icon-sidenav fal fa-cog" ></i>
-        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Users and Permission</span>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Usuarios y permisos</span>
       </a>
     </li>
 
@@ -92,14 +92,14 @@
       <a class="sidenav-nav-link" routerLink="login" routerLinkActive="active"
         [routerLinkActiveOptions]="{exact: true}">
         <i class="sidenav-link-icon icon-sidenav fal fa-sign-out" ></i>
-        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Logout</span>
+        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Salir</span>
       </a>
     </li>
 
     <li class="sidenav-nav-item switch">
       <mat-slide-toggle  thumbIcon (ngModelChange)="onChange($event)" ngModel="isdarkThemeActive"></mat-slide-toggle>
 
-      <span class="sidenav-link-text" style="color:#fff" @fadeInOut *ngIf="collapsed">{{name}}</span>
+      <span class="sidenav-link-text" style="color:#fff" @fadeInOut *ngIf="collapsed">Tema {{name}}</span>
 
     </li>
   </ul>

@@ -1,21 +1,38 @@
 <mat-dialog-content class="dialog-content">
+  <!-- Título con el nombre de la enfermedad -->
   <h2 mat-dialog-title class="dialog-title">{{ data.nombre_enfermedad }}</h2>
 
+  <!-- División -->
   <mat-divider></mat-divider>
 
+  <!-- Información general -->
   <div class="container">
+    <!-- Mostrar el nombre del anciano -->
+    <div class="general-info">
+      <p><strong>Enfermedad correspondiente al anciano:</strong> {{ data.anciano_nombre }}</p>
+    </div>
+
+    <!-- Detalles de la enfermedad -->
     <div class="general-info">
       <mat-list class="info-list">
         <mat-list-item>
           <p><strong>Diagnóstico:</strong> {{ data.fecha_diagnostico }}</p>
         </mat-list-item>
+        <mat-list-item>
+          <p><strong>Descripción:</strong> {{ data.descripcion }}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p><strong>Medicamento:</strong> {{ data.medicamento }}</p>
+        </mat-list-item>
       </mat-list>
     </div>
   </div>
 
+  <!-- División -->
   <mat-divider></mat-divider>
 </mat-dialog-content>
 
+<!-- Botón para cerrar el modal -->
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="primary" class="close-button">Cerrar</button>
 </mat-dialog-actions>

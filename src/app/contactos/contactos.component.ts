@@ -89,7 +89,7 @@ export class ContactosComponent {
 
   editContacto(row: any) {
     if (this.haveedit) {
-      this.dialog.open(DialogContactosComponent, { width: '50%', data: row }).afterClosed().subscribe(val => {
+      this.dialog.open(DialogContactosComponent, { width: '50%', data: { ...row, ancianoId: row.anciano } }).afterClosed().subscribe(val => {
         if (val === 'update') {
           this.getAllContactos();
           Swal.fire({

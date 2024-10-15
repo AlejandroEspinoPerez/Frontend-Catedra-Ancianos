@@ -92,8 +92,8 @@ export class ApiService {
   }
 
   // Eliminar contacto de emergencia
-  deleteEnfermedad(contactoId: number) {
-    return this.http.delete<any>(`${this.apiurlEnfermedades}${contactoId}/`);
+  deleteEnfermedad(enfermedadId: number) {
+    return this.http.delete<any>(`${this.apiurlEnfermedades}${enfermedadId}/`);
   }
 
 

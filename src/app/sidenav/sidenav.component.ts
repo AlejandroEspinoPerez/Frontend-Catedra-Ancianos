@@ -104,17 +104,17 @@ export class SidenavComponent implements OnInit {
     });
   }
 
-  name = 'Dark';
+  name = 'Oscuro';
   color = '# 4527a0';
 
   onChange(newValue: boolean): void {
     console.log(newValue);
     if (newValue) {
       this.document.body.classList.add('dark-mode');
-      this.name = 'Dark';
+      this.name = 'Oscuro';
     } else {
       this.document.body.classList.remove('dark-mode');
-      this.name = 'Light';
+      this.name = 'Claro';
     }
   }
 }

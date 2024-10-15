@@ -22,16 +22,21 @@ export class DialogEnfermedadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Actualizamos el formulario con los nuevos campos: descripcion y medicamento
     this.enfermedadForm = this.formBuilder.group({
       nombre_enfermedad: ['', Validators.required],
-      fecha_diagnostico: ['', Validators.required]
+      fecha_diagnostico: ['', Validators.required],
+      descripcion: ['', Validators.required],  // Nuevo campo
+      medicamento: ['', Validators.required]   // Nuevo campo
     });
 
-    if (this.editData && this.editData.id) { // Si editData contiene id, significa que estamos editando
+    if (this.editData && this.editData.id) { // Si editData contiene id, estamos en modo edición
       this.actionButton = "UPDATE";
       this.enfermedadForm.patchValue({
         nombre_enfermedad: this.editData.nombre_enfermedad,
-        fecha_diagnostico: this.editData.fecha_diagnostico
+        fecha_diagnostico: this.editData.fecha_diagnostico,
+        descripcion: this.editData.descripcion,      // Rellenar el campo en modo edición
+        medicamento: this.editData.medicamento       // Rellenar el campo en modo edición
       });
     }
   }
@@ -40,11 +45,13 @@ export class DialogEnfermedadComponent implements OnInit {
     if (this.enfermedadForm.valid) {
       const enfermedadData = {
         nombre_enfermedad: this.enfermedadForm.value.nombre_enfermedad,
-        fecha_diagnostico: new Date(this.enfermedadForm.value.fecha_diagnostico).toISOString().split('T')[0]
+        fecha_diagnostico: new Date(this.enfermedadForm.value.fecha_diagnostico).toISOString().split('T')[0],
+        descripcion: this.enfermedadForm.value.descripcion,  // Agregar descripción
+        medicamento: this.enfermedadForm.value.medicamento   // Agregar medicamento
       };
 
       if (this.editData && this.editData.id) {
-        this.updateEnfermedad(this.editData.id, enfermedadData); // Actualizar si existe id
+        this.updateEnfermedad(this.editData.id, enfermedadData); // Llamar a la función de actualización
       } else {
         const ancianoId = this.editData.ancianoId;
         this.api.postEnfermedad(ancianoId, enfermedadData).subscribe({

@@ -58,8 +58,7 @@ export class AncianoComponent{
   openDialogAnciano(): void {
     if (this.haveadd) {
       this.dialog.open(DialogAncianoComponent, {
-        width: '20%',
-        height: '400px', // Ajusta la altura según sea necesario
+        width: '50%',
       }).afterClosed().subscribe(val => {
         if (val === 'save') {
           Swal.fire({

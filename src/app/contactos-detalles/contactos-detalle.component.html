@@ -1,9 +1,18 @@
 <mat-dialog-content class="dialog-content">
+  <!-- Título con el nombre del familiar -->
   <h2 mat-dialog-title class="dialog-title">{{ data.nombre_familiar }}</h2>
 
+  <!-- División -->
   <mat-divider></mat-divider>
 
+  <!-- Información general -->
   <div class="container">
+    <!-- Mostrar el nombre del anciano relacionado -->
+    <div class="general-info">
+      <p><strong>Contacto correspondiente al anciano:</strong> {{ data.anciano_nombre }}</p>
+    </div>
+
+    <!-- Detalles del contacto -->
     <div class="general-info">
       <mat-list class="info-list">
         <mat-list-item>
@@ -12,13 +21,21 @@
         <mat-list-item>
           <p><strong>Relación:</strong> {{ data.relacion }}</p>
         </mat-list-item>
+        <mat-list-item>
+          <p><strong>Dirección:</strong> {{ data.direccion }}</p>
+        </mat-list-item>
+        <mat-list-item>
+          <p><strong>Género:</strong> {{ data.genero }}</p>
+        </mat-list-item>
       </mat-list>
     </div>
   </div>
 
+  <!-- División -->
   <mat-divider></mat-divider>
 </mat-dialog-content>
 
+<!-- Botón para cerrar el modal -->
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close color="primary" class="close-button">Cerrar</button>
 </mat-dialog-actions>

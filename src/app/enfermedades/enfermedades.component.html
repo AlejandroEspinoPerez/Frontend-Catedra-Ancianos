@@ -1,0 +1,81 @@
+<div class="contenedorGrande">
+
+  <mat-toolbar class="toolbar" color="primary">
+    <mat-toolbar-row>
+      <mat-icon class="example-icon">local_hospital</mat-icon>
+      <span>Enfermedades</span>
+      <span class="example-spacer"></span>
+      <button *ngIf="mostrarAdicionar" mat-raised-button color="warn" (click)="openDialog()">Add Enfermedad</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <div class="container">
+    <div style="margin-top: 10px;">
+      <mat-form-field appearance="outline">
+        <mat-label>Buscar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Buscando..." #input>
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <table mat-table style="border-radius: 20px;" [dataSource]="dataSource" matSort>
+
+          <!-- Nombre Enfermedad Column -->
+          <ng-container matColumnDef="nombre_enfermedad">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Enfermedad</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.nombre_enfermedad}}</td>
+          </ng-container>
+
+          <!-- Fecha Diagnóstico Column -->
+          <ng-container matColumnDef="fecha_diagnostico">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Fecha Diagnóstico</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.fecha_diagnostico}}</td>
+          </ng-container>
+
+          <!-- Descripción Column -->
+          <ng-container matColumnDef="descripcion">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.descripcion}}</td>
+          </ng-container>
+
+          <!-- Medicamento Column -->
+          <ng-container matColumnDef="medicamento">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Medicamento</th>
+            <td mat-cell class="colum" *matCellDef="let row" (click)="openDetail(row)">{{row.medicamento}}</td>
+          </ng-container>
+
+          <!-- Nombre Anciano Column -->
+          <ng-container matColumnDef="anciano_nombre">
+            <th class="title-table" mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Anciano</th>
+            <td mat-cell class="colum" *matCellDef="let row">{{row.anciano_nombre}}</td>
+          </ng-container>
+
+
+          <!-- Acciones Column -->
+          <ng-container matColumnDef="Acciones">
+            <th class="title-table" mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell class="columaccion" *matCellDef="let row">
+              <button (click)="editEnfermedad(row)" mat-icon-button color="primary">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button *ngIf="mostrarDelete" (click)="deleteEnfermedad(row.id)" color="warn">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="5">No data matching the filter "{{input.value}}"</td>
+          </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of enfermedades"></mat-paginator>
+      </div>
+    </div>
+  </div>
+
+</div>

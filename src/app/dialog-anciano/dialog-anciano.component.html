@@ -1,5 +1,5 @@
 <div class="container1">
-  <h1 mat-dialog-title>Adicionar Anciano</h1>
+  <h1 mat-dialog-title>{{ actionButton === 'SAVE' ? 'Adicionar Anciano' : 'Actualizar Anciano' }}</h1>
 
   <div mat-dialog-content>
     <form [formGroup]="ancianoForm">
@@ -30,7 +30,7 @@
           <mat-option value="femenino">Femenino</mat-option>
         </mat-select>
       </mat-form-field>
-      
+
       <mat-form-field class="input" appearance="outline">
         <mat-label>Número de Teléfono</mat-label>
         <input matInput type="text" formControlName="numero_telefono" placeholder="Escribe el numero de teléfono...">

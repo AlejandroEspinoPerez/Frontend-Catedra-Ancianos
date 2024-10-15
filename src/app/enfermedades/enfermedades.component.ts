@@ -16,13 +16,13 @@ import { EnfermedadesDetalleComponent } from '../enfermedades-detalles/enfermeda
   styleUrls: ['./enfermedades.component.scss']
 })
 export class EnfermedadesComponent implements OnInit {
-  haveedit = false;
-  haveadd = false;
-  havedelete = false;
+  haveedit = true;
+  haveadd = true;
+  havedelete = true;
   accesData: any;
   mostrarAdicionar = false;
   mostrarDelete = false;
-  displayedColumns: string[] = ['nombreEnfermedad', 'fechaDiagnostico', 'descripcion', 'medicamento', 'Acciones'];
+  displayedColumns: string[] = ['nombre_enfermedad', 'fecha_diagnostico', 'descripcion', 'medicamento', 'anciano_nombre', 'Acciones'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
