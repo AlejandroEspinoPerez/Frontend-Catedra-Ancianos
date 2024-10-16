@@ -2,19 +2,18 @@ import { OnInit, AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogAncianoComponent } from '../dialog-anciano/dialog-anciano.component';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import Swal from 'sweetalert2'
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { DialogAptoComponent } from '../dialog-apto/dialog-apto.component';
-import { DialogEnfermedadComponent } from '../dialog-enfermedad/dialog-enfermedad.component';
-import { Anciano } from '../Models/anciano.model'
-import { DialogContactosComponent } from '../dialogContacto/dialog-contactos.component';
+import { DialogEnfermedadComponent } from '../../enfermedadesComponents/dialog-enfermedad/dialog-enfermedad.component';
+import { Anciano } from '../../Models/anciano.model'
+import { DialogContactosComponent } from '../../contactosComponents/dialogContacto/dialog-contactos.component';
 import { AncianoDetalleComponent } from '../anciano-detalles/anciano-detalle.component';
-import { PermissionsService } from '../services/permissions.service'; // Servicio de permisos
+import { PermissionsService } from '../../services/permissions.service'; // Servicio de permisos
 
 
 
@@ -23,27 +22,27 @@ import { PermissionsService } from '../services/permissions.service'; // Servici
   templateUrl: './anciano.component.html',
   styleUrls: ['./anciano.component.scss']
 })
-export class AncianoComponent{
+export class AncianoComponent {
 
-    haveedit=false;
-    haveadd=false;
+  haveedit = false;
+  haveadd = false;
   havedelete = false;
 
   showAddButton = false;
   showEditButton = false;
   showDeleteButton = false;
 
-    accesData:any;
-    mostrarAdicionar=false;
-    mostarDelete=false;
+  accesData: any;
+  mostrarAdicionar = false;
+  mostarDelete = false;
 
-  displayedColumns: string[] = ['nombre', 'apellidos', 'edad', 'direccion', 'genero','numero_telefono', 'enfermedades', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'apellidos', 'edad', 'direccion', 'genero', 'numero_telefono', 'enfermedades', 'acciones'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private router: Router, private permissionsService: PermissionsService ,private toast: ToastrService, private api: ApiService) {
+  constructor(private dialog: MatDialog, private router: Router, private permissionsService: PermissionsService, private toast: ToastrService, private api: ApiService) {
     this.setAccesPermission();
     if (this.api.getUserrole() == 'admin' || this.api.getUserrole() == 'trabajador') {
       this.mostrarAdicionar = true;
@@ -108,7 +107,7 @@ export class AncianoComponent{
       const dialogRef = this.dialog.open(DialogContactosComponent, {
         width: '50%',
         data: { ancianoId } // Pasar el ID del anciano
-        }
+      }
       );
 
       dialogRef.afterClosed().subscribe(val => {

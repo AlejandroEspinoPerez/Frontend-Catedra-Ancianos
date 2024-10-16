@@ -7,17 +7,6 @@
     </button>
   </div>
   <ul class="sidenav-nav">
-    <!--
-
-  <li class="sidenav-nav-item" *ngFor="let data of navData">
-    <a class="sidenav-nav-link" [routerLink]="[data.routeLink]" routerLinkActive="active"
-    [routerLinkActiveOptions]="{exact: true}">
-
-    <i class="sidenav-link-icon icon-sidenav" [class]="data.icon"></i>
-    <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">{{data.label}}</span>
-  </a>
-</li>
--->
 
     <!--Icono del dashboard -->
     <li class="sidenav-nav-item" >
@@ -52,33 +41,6 @@
           <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Enfermedad</span>
         </a>
       </li>
-
-    <!-- Icono del Residencia
-    <li class="sidenav-nav-item" >
-      <a class="sidenav-nav-link" routerLink="residencia" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}">
-        <i class="sidenav-link-icon icon-sidenav fal fa-university" ></i>
-        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Residencia</span>
-      </a>
-    </li>
-
-
-    <li class="sidenav-nav-item" >
-      <a class="sidenav-nav-link" routerLink="apartamento" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}">
-        <i class="sidenav-link-icon icon-sidenav fal fa-chart-bar" ></i>
-        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Apartamento</span>
-      </a>
-    </li>
-
-    <li class="sidenav-nav-item" >
-      <a class="sidenav-nav-link" routerLink="becado" routerLinkActive="active"
-        [routerLinkActiveOptions]="{exact: true}">
-        <i class="sidenav-link-icon icon-sidenav fal fa-address-card" ></i>
-        <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">Becado</span>
-      </a>
-    </li>
- -->
 
     <li class="sidenav-nav-item" *ngIf="isAdmin" >
       <a class="sidenav-nav-link" routerLink="userlisting" routerLinkActive="active"
