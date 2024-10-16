@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { DialogEnfermedadComponent } from '../dialog-enfermedad/dialog-enfermedad.component';
 import { EnfermedadesDetalleComponent } from '../enfermedades-detalles/enfermedades-detalle.component';
-
+import { PermissionsService } from '../services/permissions.service';
 @Component({
   selector: 'app-enfermedades',
   templateUrl: './enfermedades.component.html',
@@ -22,6 +22,7 @@ export class EnfermedadesComponent implements OnInit {
   accesData: any;
   mostrarAdicionar = false;
   mostrarDelete = false;
+  showEditButton = false;
   displayedColumns: string[] = ['nombre_enfermedad', 'fecha_diagnostico', 'descripcion', 'medicamento', 'anciano_nombre', 'Acciones'];
   dataSource!: MatTableDataSource<any>;
 
@@ -32,7 +33,8 @@ export class EnfermedadesComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private toast: ToastrService,
-    private api: ApiService
+    private api: ApiService,
+    private permissionsService: PermissionsService,
   ) {
     this.setAccesPermission();
     if (this.api.getUserrole() == 'admin' || this.api.getUserrole() == 'trabajador') {
@@ -156,18 +158,40 @@ export class EnfermedadesComponent implements OnInit {
     });
   }
 
+  // Este método ahora utilizará el servicio de permisos
   setAccesPermission() {
-    this.api.getAccessbyRole(this.api.getUserrole(), 'residencia').subscribe(res => {
-      this.accesData = res;
-      if (this.accesData.length > 0) {
-        this.haveadd = this.accesData[0].haveadd;
-        this.haveedit = this.accesData[0].haveedit;
-        this.havedelete = this.accesData[0].havedelete;
-        this.getAllEnfermedades();
-      } else {
-        this.toast.error('No tienes acceso');
-        this.router.navigate(['']);
+    const userRole = this.api.getUserrole();
+    const menu = 'residencia'; // Puedes cambiar el menú según el componente
+
+    // Llamada al servicio para obtener los permisos
+    this.permissionsService.getPermissions().subscribe({
+      next: (permissions) => {
+        const access = permissions.find(p => p.role === userRole && p.menu === menu);
+        if (access) {
+          this.haveadd = access.haveadd;
+          this.haveedit = access.haveedit;
+          this.havedelete = access.havedelete;
+
+          // Actualiza los botones basados en los permisos
+          this.updateUIBasedOnPermissions();
+          this.getAllEnfermedades();  // Obtener ancianos solo si hay permisos
+        } else {
+          this.toast.error('No tienes acceso a este menú');
+          this.router.navigate(['']); // Redireccionar si no hay acceso
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener accesos:', err);
       }
     });
   }
+
+
+  updateUIBasedOnPermissions() {
+    this.showEditButton = this.haveedit;
+
+    console.log('Add:', this.haveadd, 'Edit:', this.haveedit, 'Delete:', this.havedelete);
+
+  }
+
 }

@@ -11,13 +11,6 @@ import { Enfermedades } from '../Models/enfermedades.model copy';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-  apiurlBase='https://residencia.onrender.com/';
-  //apiurluser='https://residencia.onrender.com/userList/';
-  apiurlrole='https://residencia.onrender.com/role/';
-  apiurlresidencia='https://residencia.onrender.com/residenciaList/';
-  apiurlapto='https://residencia.onrender.com/apartamentoList/';
-  apiurlbecado='https://residencia.onrender.com/becadoList/';
-  apiurlcantidades = 'https://residencia.onrender.com/cantidades/';
 
 
   // NUEVAS URLs para Cátedra Adulto Mayor======================================================================
@@ -51,11 +44,6 @@ export class ApiService {
   getAllContactos(): Observable<Contactos[]> {  // Especificamos que la respuesta es un array de Anciano
     return this.http.get<Contactos[]>(this.apiurlContactosEmergencia);
   }
-
-  // // Obtener contactos para un anciano específico
-  // getContactosPorAnciano(ancianoId: number): Observable<ContactoEmergencia[]> {
-  //   return this.http.get<ContactoEmergencia[]>(`${this.apiurlAncianos}${ancianoId}/contactos/`);
-  // }
 
   // Agregar contacto a un anciano específico
   postContactoEmergencia(contactoData: any) {
@@ -128,41 +116,45 @@ export class ApiService {
     return this.http.put<any>(`${this.apiurlUser}${code}/`, data);
   }
 
+  // Obtener accesos por rol y menú
+  getAccessbyRole(role: any, menu: any): Observable<any> {
+    return this.http.get(`http://localhost:8000/api/roleaccess?role=${role}&menu=${menu}`);
+  }
+
   // Verificar si el usuario está logueado
   IsloggedIn(): boolean {
     return sessionStorage.getItem('username') != null;
   }
 
-  // Obtener rol del usuario
+  // Obtener rol del usuario desde el almacenamiento
   getUserrole(): string {
     return sessionStorage.getItem('userrole')?.toString() ?? '';
   }
 
 
-  // Obtener accesos por rol
-  getAccessbyRole(role: any, menu: any): Observable<any> {
-    return this.http.get(`http://localhost:8000/api/roleaccess?role=${role}&menu=${menu}`);
-  }
 
 
 
 
+
+
+  
 
 
   // //Accesos a la user list ==============================
   // postCantUser(data:any){
-  //   return this.http.post("http://localhost:3000/cantidades",data);
-  // }
+    //   return this.http.post("http://localhost:3000/cantidades",data);
+    // }
 
-  // getAllUser(){
-  //   return this.http.get(this.apiurluser);
-  // }
-  // getAllRole(){
-  //   return this.http.get(this.apiurlrole);
-  // }
-  // getbycode(code:any){
-  //   return this.http.get(this.apiurluser+code);
-  // }
+    // getAllUser(){
+      //   return this.http.get(this.apiurluser);
+      // }
+      // getAllRole(){
+        //   return this.http.get(this.apiurlrole);
+        // }
+        // getbycode(code:any){
+          //   return this.http.get(this.apiurluser+code);
+          // }
   // prosederRegister(data:any){
   //   return this.http.post(this.apiurluser,data);
   // }
@@ -180,6 +172,13 @@ export class ApiService {
   //   return this.http.get('https://residencia.onrender.com/roleacces?role='+role+'&menu='+menu);
   // }
 
+  apiurlBase='https://residencia.onrender.com/';
+  //apiurluser='https://residencia.onrender.com/userList/';
+  apiurlrole='https://residencia.onrender.com/role/';
+  apiurlresidencia='https://residencia.onrender.com/residenciaList/';
+  apiurlapto='https://residencia.onrender.com/apartamentoList/';
+  apiurlbecado='https://residencia.onrender.com/becadoList/';
+  apiurlcantidades = 'https://residencia.onrender.com/cantidades/';
 
 
         //Accesos a la residencia ==============================
@@ -251,5 +250,4 @@ export class ApiService {
     return this.http.get<{_total:number}>(url).pipe(map(res=>res._total));
 
   }
-
 }

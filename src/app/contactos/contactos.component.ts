@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 import { DialogContactosComponent } from '../dialogContacto/dialog-contactos.component';
 import { Contactos } from '../Models/contactos.model';
 import { ContactosDetalleComponent } from '../contactos-detalles/contactos-detalle.component';
-
+import { PermissionsService } from '../services/permissions.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-contactos',
   templateUrl: './contactos.component.html',
@@ -23,6 +24,7 @@ export class ContactosComponent {
   accesData: any;
   mostrarAdicionar = false;
   mostrarDelete = false;
+  showEditButton = false;
   displayedColumns: string[] = ['nombre_familiar', 'relacion', 'numero_telefono', 'genero', 'direccion','anciano_nombre', 'Acciones'];
 
   dataSource!: MatTableDataSource<any>;
@@ -30,7 +32,7 @@ export class ContactosComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private toast: ToastrService, private api: ApiService) {
+  constructor(private dialog: MatDialog, private router: Router, private permissionsService: PermissionsService,private toast: ToastrService, private api: ApiService) {
     this.setAccesPermission();
     if (this.api.getUserrole() == 'admin' || this.api.getUserrole() == 'trabajador') {
       this.mostrarAdicionar = true;
@@ -162,16 +164,36 @@ export class ContactosComponent {
   }
 
   setAccesPermission() {
-    this.api.getAccessbyRole(this.api.getUserrole(), 'residencia').subscribe(res => {
-      this.accesData = res;
-      if (this.accesData.length > 0) {
-        this.haveadd = this.accesData[0].haveadd;
-        this.haveedit = this.accesData[0].haveedit;
-        this.havedelete = this.accesData[0].havedelete;
-        this.getAllContactos();
-      } else {
-        this.toast.error("No tienes acceso");
+    const userRole = this.api.getUserrole();
+    const menu = 'residencia'; // Puedes cambiar el menú según el componente
+
+    // Llamada al servicio para obtener los permisos
+    this.permissionsService.getPermissions().subscribe({
+      next: (permissions) => {
+        const access = permissions.find(p => p.role === userRole && p.menu === menu);
+        if (access) {
+          this.haveadd = access.haveadd;
+          this.haveedit = access.haveedit;
+          this.havedelete = access.havedelete;
+
+          // Actualiza los botones basados en los permisos
+          this.updateUIBasedOnPermissions();
+          this.getAllContactos();  // Obtener ancianos solo si hay permisos
+        } else {
+          this.toast.error('No tienes acceso a este menú');
+          this.router.navigate(['']); // Redireccionar si no hay acceso
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener accesos:', err);
       }
     });
+  }
+
+
+  updateUIBasedOnPermissions() {
+    this.showEditButton = this.haveedit;
+    console.log('Add:', this.haveadd, 'Edit:', this.haveedit, 'Delete:', this.havedelete);
+
   }
 }

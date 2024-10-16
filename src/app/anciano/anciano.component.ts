@@ -14,7 +14,7 @@ import { DialogEnfermedadComponent } from '../dialog-enfermedad/dialog-enfermeda
 import { Anciano } from '../Models/anciano.model'
 import { DialogContactosComponent } from '../dialogContacto/dialog-contactos.component';
 import { AncianoDetalleComponent } from '../anciano-detalles/anciano-detalle.component';
-
+import { PermissionsService } from '../services/permissions.service'; // Servicio de permisos
 
 
 
@@ -25,9 +25,9 @@ import { AncianoDetalleComponent } from '../anciano-detalles/anciano-detalle.com
 })
 export class AncianoComponent{
 
-    haveedit=true;
-    haveadd=true;
-  havedelete = true;
+    haveedit=false;
+    haveadd=false;
+  havedelete = false;
 
   showAddButton = false;
   showEditButton = false;
@@ -43,7 +43,7 @@ export class AncianoComponent{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private router: Router, private toast: ToastrService, private api: ApiService) {
+  constructor(private dialog: MatDialog, private router: Router, private permissionsService: PermissionsService ,private toast: ToastrService, private api: ApiService) {
     this.setAccesPermission();
     if (this.api.getUserrole() == 'admin' || this.api.getUserrole() == 'trabajador') {
       this.mostrarAdicionar = true;
@@ -215,58 +215,43 @@ export class AncianoComponent{
     });
   }
 
+  // Este método ahora utilizará el servicio de permisos
   setAccesPermission() {
     const userRole = this.api.getUserrole();
-    const menu = 'residencia'; // o el menú que desees
+    const menu = 'residencia'; // Puedes cambiar el menú según el componente
 
-    this.api.getAccessbyRole(userRole, menu).subscribe(res => {
-      console.log('Respuesta de permisos:', res); // Verifica la respuesta
-      this.accesData = res;
+    // Llamada al servicio para obtener los permisos
+    this.permissionsService.getPermissions().subscribe({
+      next: (permissions) => {
+        const access = permissions.find(p => p.role === userRole && p.menu === menu);
+        if (access) {
+          this.haveadd = access.haveadd;
+          this.haveedit = access.haveedit;
+          this.havedelete = access.havedelete;
 
-      // Asegúrate de que la respuesta tenga datos antes de acceder a ellos
-      if (this.accesData && this.accesData.length > 0) {
-        this.haveadd = this.accesData[0].haveadd;
-        this.haveedit = this.accesData[0].haveedit;
-        this.havedelete = this.accesData[0].havedelete;
-
-        // Mostrar/ocultar elementos basados en los permisos
-        this.updateUIBasedOnPermissions();
-
-        this.getAllAncianos(); // Llama a esta función solo si tienes acceso
-      } else {
-        this.toast.error('No tienes acceso');
-        this.router.navigate(['']);
+          // Actualiza los botones basados en los permisos
+          this.updateUIBasedOnPermissions();
+          this.getAllAncianos();  // Obtener ancianos solo si hay permisos
+        } else {
+          this.toast.error('No tienes acceso a este menú');
+          this.router.navigate(['']); // Redireccionar si no hay acceso
+        }
+      },
+      error: (err) => {
+        console.error('Error al obtener accesos:', err);
       }
-    }, error => {
-      // Manejo de errores
-      console.error('Error al obtener accesos:', error);
-      this.toast.error('Error al verificar los permisos');
     });
   }
 
+
   updateUIBasedOnPermissions() {
-    // Mostrar u ocultar botones/elementos de acuerdo a los permisos
-    if (this.haveadd) {
-      // Muestra el botón de agregar
-      this.showAddButton = true;
-    } else {
-      this.showAddButton = false;
-    }
+    this.showAddButton = this.haveadd;
+    this.showEditButton = this.haveedit;
+    this.showDeleteButton = this.havedelete;
+    console.log('Add:', this.haveadd, 'Edit:', this.haveedit, 'Delete:', this.havedelete);
 
-    if (this.haveedit) {
-      // Muestra el botón de editar
-      this.showEditButton = true;
-    } else {
-      this.showEditButton = false;
-    }
-
-    if (this.havedelete) {
-      // Muestra el botón de eliminar
-      this.showDeleteButton = true;
-    } else {
-      this.showDeleteButton = false;
-    }
   }
+
 
 
 

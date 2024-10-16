@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "haveedit": true,
+    "haveadd": true,
+    "havedelete": true,
+    "role": "admin",
+    "menu": "residencia"
+  },
+  {
+    "id": 3,
+    "haveedit": false,
+    "haveadd": false,
+    "havedelete": false,
+    "role": "usuario",
+    "menu": "residencia"
+  },
+  {
+    "id": 4,
+    "haveedit": true,
+    "haveadd": true,
+    "havedelete": false,
+    "role": "trabajador",
+    "menu": "residencia"
+  }
+]

@@ -59,14 +59,18 @@
           <ng-container matColumnDef="Acciones">
             <th class="title-table" mat-header-cell *matHeaderCellDef>Acciones</th>
             <td mat-cell class="columaccion" *matCellDef="let row">
-              <button (click)="editContacto(row)" mat-icon-button color="primary">
+              <button (click)="editContacto(row)"  *ngIf="showEditButton" mat-icon-button color="primary">
                 <mat-icon>edit</mat-icon>
               </button>
               <button mat-icon-button *ngIf="mostrarDelete" (click)="deleteContacto(row.id)" color="warn">
                 <mat-icon>delete</mat-icon>
               </button>
+              <button (click)="openDetail(row)"  mat-icon-button color="primary">
+                <mat-icon>info</mat-icon>
+              </button>
             </td>
           </ng-container>
+
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
