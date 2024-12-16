@@ -11,20 +11,20 @@ import { Enfermedades } from '../Models/enfermedades.model copy';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+  
+  apiurlAncianos = 'http://localhost:8000/api/ancianos/';
 
-
+  getAllAncianos(): Observable<Anciano[]> {  
+    return this.http.get<Anciano[]>(this.apiurlAncianos);
+  }
+  
   // NUEVAS URLs para Cátedra Adulto Mayor======================================================================
   apiurlUser = 'http://localhost:8000/api/users/'; // Cambia esta URL a tu endpoint real
-
-  apiurlAncianos = 'http://localhost:8000/api/ancianos/';
   apiurlContactosEmergencia = 'http://localhost:8000/api/contactos/';
   apiurlEnfermedades = 'http://localhost:8000/api/enfermedades/';
 
   // Métodos para consumir la API de adulto mayor===========================================================
   // Ancianos
-  getAllAncianos(): Observable<Anciano[]> {  // Especificamos que la respuesta es un array de Anciano
-    return this.http.get<Anciano[]>(this.apiurlAncianos);
-  }
 
   postAnciano(data: any) {
     return this.http.post<any>(this.apiurlAncianos, data);

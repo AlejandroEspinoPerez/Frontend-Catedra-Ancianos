@@ -1,27 +1,47 @@
 <div class="container1">
   <h1 mat-dialog-title>{{ actionButton === 'SAVE' ? 'Adicionar Contacto' : 'Actualizar Contacto' }}</h1>
 
-
   <div mat-dialog-content>
     <form [formGroup]="contactoForm">
       <mat-form-field class="input" appearance="outline">
         <mat-label>Nombre del Contacto</mat-label>
         <input matInput type="text" formControlName="nombre_familiar" placeholder="Escribe el nombre del contacto..">
+        <mat-error *ngIf="contactoForm.get('nombre_familiar')?.hasError('required')">
+          El nombre es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="contactoForm.get('nombre_familiar')?.hasError('pattern')">
+          Solo se permiten letras.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
         <mat-label>Relación</mat-label>
         <input matInput type="text" formControlName="relacion" placeholder="Escribe la relación..">
+        <mat-error *ngIf="contactoForm.get('relacion')?.hasError('required')">
+          La relación es obligatoria.
+        </mat-error>
+        <mat-error *ngIf="contactoForm.get('relacion')?.hasError('pattern')">
+          Solo se permiten letras.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
         <mat-label>Número de Teléfono</mat-label>
         <input matInput type="tel" formControlName="numero_telefono" placeholder="Escribe el número de teléfono..">
+        <mat-error *ngIf="contactoForm.get('numero_telefono')?.hasError('required')">
+          El número de teléfono es obligatorio.
+        </mat-error>
+        <mat-error *ngIf="contactoForm.get('numero_telefono')?.hasError('pattern')">
+          Solo se permiten números y deben ser 10 dígitos.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
         <mat-label>Dirección</mat-label>
         <input matInput type="text" formControlName="direccion" placeholder="Escribe la dirección..">
+        <mat-error *ngIf="contactoForm.get('direccion')?.hasError('required')">
+          La dirección es obligatoria.
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field class="input" appearance="outline">
@@ -30,12 +50,14 @@
           <mat-option value="masculino">Masculino</mat-option>
           <mat-option value="femenino">Femenino</mat-option>
         </mat-select>
+        <mat-error *ngIf="contactoForm.get('genero')?.hasError('required')">
+          El género es obligatorio.
+        </mat-error>
       </mat-form-field>
-
     </form>
   </div>
 
-  <div mat-dialog-actions [align]="'end'">
+  <div mat-dialog-actions align="end">
     <button mat-raised-button color="warn" mat-dialog-close>CERRAR</button>
     <button mat-raised-button color="primary" (click)="addContactos()">{{actionButton}}</button>
   </div>

@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export class DialogEnfermedadComponent implements OnInit {
 
   enfermedadForm!: FormGroup;
-  actionButton: string = "SAVE";
+  actionButton: string = "Adicionar";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,21 +22,21 @@ export class DialogEnfermedadComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Actualizamos el formulario con los nuevos campos: descripcion y medicamento
+    // Formulario con validaciones
     this.enfermedadForm = this.formBuilder.group({
-      nombre_enfermedad: ['', Validators.required],
+      nombre_enfermedad: ['', [Validators.required, Validators.minLength(3)]],
       fecha_diagnostico: ['', Validators.required],
-      descripcion: ['', Validators.required],  // Nuevo campo
-      medicamento: ['', Validators.required]   // Nuevo campo
+      descripcion: ['', [Validators.required, Validators.minLength(10)]], // Validación para mínimo 10 caracteres
+      medicamento: ['', [Validators.required, Validators.minLength(3)]]    // Validación para mínimo 3 caracteres
     });
 
-    if (this.editData && this.editData.id) { // Si editData contiene id, estamos en modo edición
-      this.actionButton = "UPDATE";
+    if (this.editData && this.editData.id) {
+      this.actionButton = "Actualizar";
       this.enfermedadForm.patchValue({
         nombre_enfermedad: this.editData.nombre_enfermedad,
         fecha_diagnostico: this.editData.fecha_diagnostico,
-        descripcion: this.editData.descripcion,      // Rellenar el campo en modo edición
-        medicamento: this.editData.medicamento       // Rellenar el campo en modo edición
+        descripcion: this.editData.descripcion,
+        medicamento: this.editData.medicamento
       });
     }
   }
@@ -46,12 +46,12 @@ export class DialogEnfermedadComponent implements OnInit {
       const enfermedadData = {
         nombre_enfermedad: this.enfermedadForm.value.nombre_enfermedad,
         fecha_diagnostico: new Date(this.enfermedadForm.value.fecha_diagnostico).toISOString().split('T')[0],
-        descripcion: this.enfermedadForm.value.descripcion,  // Agregar descripción
-        medicamento: this.enfermedadForm.value.medicamento   // Agregar medicamento
+        descripcion: this.enfermedadForm.value.descripcion,
+        medicamento: this.enfermedadForm.value.medicamento
       };
 
       if (this.editData && this.editData.id) {
-        this.updateEnfermedad(this.editData.id, enfermedadData); // Llamar a la función de actualización
+        this.updateEnfermedad(this.editData.id, enfermedadData);
       } else {
         const ancianoId = this.editData.ancianoId;
         this.api.postEnfermedad(ancianoId, enfermedadData).subscribe({
@@ -77,6 +77,9 @@ export class DialogEnfermedadComponent implements OnInit {
           }
         });
       }
+    } else {
+      // Muestra error si el formulario no es válido
+      this.enfermedadForm.markAllAsTouched();
     }
   }
 

@@ -10,9 +10,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./dialog-anciano.component.scss']
 })
 export class DialogAncianoComponent implements OnInit {
-
   ancianoForm!: FormGroup;
-  actionButton: string = "SAVE";
+  actionButton: string = "Adicionar";
 
   constructor(private formBuilder: FormBuilder,
     private api: ApiService,
@@ -22,79 +21,48 @@ export class DialogAncianoComponent implements OnInit {
 
   ngOnInit(): void {
     this.ancianoForm = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellidos: ['', Validators.required],
-      edad: ['', [Validators.required, Validators.min(0)]],
+      nombre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]], // Solo letras
+      apellidos: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]], // Solo letras
+      edad: ['', [Validators.required, Validators.min(0), Validators.max(120)]],
       direccion: ['', Validators.required],
       genero: ['', Validators.required],
-      numero_telefono: ['', Validators.required],// Puedes usar un mat-select para seleccionar género
+      numero_telefono: ['', [Validators.required, Validators.pattern('^[0-7]{8,15}$')]], // Solo números, entre 7 y 15 dígitos
     });
 
     if (this.editData) {
-      this.actionButton = "UPDATE";
-      this.ancianoForm.patchValue({
-        nombre: this.editData.nombre,
-        apellidos: this.editData.apellidos,
-        edad: this.editData.edad,
-        direccion: this.editData.direccion,
-        genero: this.editData.genero,
-        numero_telefono: this.editData.numero_telefono,
-      });
+      this.actionButton = "Actualizar";
+      this.ancianoForm.patchValue(this.editData);
     }
   }
 
   addAnciano() {
-    if (!this.editData) {
-      if (this.ancianoForm.valid) {
+    if (this.ancianoForm.valid) {
+      if (!this.editData) {
         this.api.postAnciano(this.ancianoForm.value).subscribe({
-          next: (res) => {
+          next: () => {
             this.ancianoForm.reset();
             this.dialogRef.close('save');
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Anciano agregado !!',
-              showConfirmButton: false,
-              timer: 1000
-            });
+            Swal.fire('Anciano agregado !!', '', 'success');
           },
           error: () => {
-            Swal.fire({
-              position: 'top-end',
-              icon: 'error',
-              title: 'Error al agregar el anciano',
-              showConfirmButton: false,
-              timer: 1000
-            });
+            Swal.fire('Error al agregar el anciano', '', 'error');
           }
         });
+      } else {
+        this.updateAnciano();
       }
-    } else {
-      this.updateAnciano();
     }
   }
 
   updateAnciano() {
     this.api.putAnciano(this.ancianoForm.value, this.editData.id).subscribe({
-      next: (res) => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Anciano actualizado !!',
-          showConfirmButton: false,
-          timer: 1000
-        });
+      next: () => {
+        Swal.fire('Anciano actualizado !!', '', 'success');
         this.ancianoForm.reset();
         this.dialogRef.close('update');
       },
       error: () => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: 'Error al actualizar el anciano',
-          showConfirmButton: false,
-          timer: 1000
-        });
+        Swal.fire('Error al actualizar el anciano', '', 'error');
       }
     });
   }
